@@ -4,6 +4,8 @@ Forked from Suyash458's work.
 A python project which parses word content from Wiktionary in an easy to use JSON format.
 Right now, it parses etymologies, definitions, pronunciations, examples, audio links and related words.
 
+It now use https://vi.wiktionary.org instead of https://en.wiktionary.org.
+
 #### JSON structure
 
 ```json
