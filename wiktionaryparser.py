@@ -6,12 +6,11 @@ from copy import copy
 from string import digits
 
 PARTS_OF_SPEECH = [
-    "noun", "verb", "adjective", "adverb", "determiner",
-    "article", "preposition", "conjunction", "proper noun",
-    "letter", "character", "phrase", "proverb", "idiom",
-    "symbol", "syllable", "numeral", "initialism", "interjection",
-    "definitions", "pronoun", "particle", "predicative", "participle",
-    "suffix",
+    "danh từ", "động từ", "tính từ", "phó từ", "đại từ", "đồng động từ",
+    "giới từ", "liên từ", "phụ tố", "số", "thán từ", "tính từ",
+    "trợ từ", "từ chỉ định", "từ ghép", "từ hạn định", "từ tượng thanh",
+    "từ viết tắt", "yếu tố", "mục từ tiếng việt chưa xếp theo loại từ‎",
+    "tiêu bản loại từ",
 ]
 
 RELATIONS = [
@@ -32,12 +31,12 @@ def is_subheading(child, parent):
 
 class WiktionaryParser(object):
     def __init__(self):
-        self.url = "https://en.wiktionary.org/wiki/{}?printable=yes"
+        self.url = "https://vi.wiktionary.org/wiki/{}?printable=yes"
         self.soup = None
         self.session = requests.Session()
         self.session.mount("http://", requests.adapters.HTTPAdapter(max_retries = 2))
         self.session.mount("https://", requests.adapters.HTTPAdapter(max_retries = 2))
-        self.language = 'english'
+        self.language = 'Tiếng Việt'
         self.current_word = None
         self.PARTS_OF_SPEECH = copy(PARTS_OF_SPEECH)
         self.RELATIONS = copy(RELATIONS)
@@ -109,6 +108,8 @@ class WiktionaryParser(object):
 
     def get_word_data(self, language):
         contents = self.soup.find_all('span', {'class': 'toctext'})
+        contents_abc = self.soup.find_all('span')
+        print(contents_abc)
         word_contents = []
         start_index = None
         for content in contents:
@@ -119,8 +120,11 @@ class WiktionaryParser(object):
         for content in contents:
             index = content.find_previous().text
             content_text = self.remove_digits(content.text.lower())
+            print('aaaaaa content_text')
+            print(content_text)
             if index.startswith(start_index) and content_text in self.INCLUDED_ITEMS:
                 word_contents.append(content)
+        print(word_contents)
         word_data = {
             'examples': self.parse_examples(word_contents),
             'definitions': self.parse_definitions(word_contents),
