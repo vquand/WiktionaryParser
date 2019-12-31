@@ -108,8 +108,6 @@ class WiktionaryParser(object):
 
     def get_word_data(self, language):
         contents = self.soup.find_all('span', {'class': 'toctext'})
-        contents_abc = self.soup.find_all('span')
-        print(contents_abc)
         word_contents = []
         start_index = None
         for content in contents:
@@ -120,11 +118,8 @@ class WiktionaryParser(object):
         for content in contents:
             index = content.find_previous().text
             content_text = self.remove_digits(content.text.lower())
-            print('aaaaaa content_text')
-            print(content_text)
             if index.startswith(start_index) and content_text in self.INCLUDED_ITEMS:
                 word_contents.append(content)
-        print(word_contents)
         word_data = {
             'examples': self.parse_examples(word_contents),
             'definitions': self.parse_definitions(word_contents),
