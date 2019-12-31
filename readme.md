@@ -1,9 +1,8 @@
 ### Wiktionary Parser
+Forked from Suyash458's work.
 
 A python project which parses word content from Wiktionary in an easy to use JSON format.
 Right now, it parses etymologies, definitions, pronunciations, examples, audio links and related words.
-
-[![Downloads](http://pepy.tech/badge/wiktionaryparser)](http://pepy.tech/project/wiktionaryparser)
 
 #### JSON structure
 
@@ -29,7 +28,7 @@ Right now, it parses etymologies, definitions, pronunciations, examples, audio l
 #### Installation
 
 ##### Using pip 
-* run `pip install wiktionaryparser`
+Not available as I forked this for personal - educating purpose.
 
 ##### From Source
 * Clone the repo or download the zip
@@ -39,8 +38,7 @@ Right now, it parses etymologies, definitions, pronunciations, examples, audio l
 #### Usage
 
  - Import the WiktionaryParser class.
- - Initialize an object and use the `fetch("word", "language")` method.
- - The default language is English, it can be changed using the `set_default_language method`.
+ - Initialize an object and use the `fetch("word")` method. This will strictly support "Tiếng Việt", so no Language input is required for my usage.
  - Include/exclude parts of speech to be parsed using `include_part_of_speech(part_of_speech)` and `exclude_part_of_speech(part_of_speech)`
  - Include/exclude relations to be parsed using `include_relation(relation)` and `exclude_relation(relation)`
 
@@ -50,8 +48,6 @@ Right now, it parses etymologies, definitions, pronunciations, examples, audio l
 >>> from wiktionaryparser import WiktionaryParser
 >>> parser = WiktionaryParser()
 >>> word = parser.fetch('test')
->>> another_word = parser.fetch('test', 'french')
->>> parser.set_default_language('french')
 >>> parser.exclude_part_of_speech('noun')
 >>> parser.include_relation('alternative forms')
 ```
@@ -64,6 +60,8 @@ Right now, it parses etymologies, definitions, pronunciations, examples, audio l
 #### Contributions
 
 If you want to add features/improvement or report issues, feel free to send a pull request!
+If it is for Vietnamese, you can send PR here.
+If it is for the general version, please refer to Suyash458's work.
 
 #### License
 
